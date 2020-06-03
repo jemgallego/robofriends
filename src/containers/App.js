@@ -3,43 +3,83 @@ import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { robots } from '../robots';
 import './App.css';
 
 class App extends Component {
 	constructor() {
 		super()
 		this.state = {
-			robots: [],
-			searchfield: ''
+			robots: robots,
+			searchfield: '',
+			counter: 0,
+			selectedIndex: ''
 		}
+
+		this.onCardClick = this.onCardClick.bind(this);
 	}
 
 	componentDidMount() {
-		fetch('https://jsonplaceholder.typicode.com/users')
-		.then(response => response.json())
-		.then(users => this.setState({robots: users}));
+		const shuffle = (array) => {
+			for (let i = array.length - 1; i > 0; i--) {
+				let j = Math.floor(Math.random() * (i + 1));
+				[array[i], array[j]] = [array[j], array[i]];
+			}
+
+			return array;
+		} 
+
+		const createDeck = (robots) => {
+			let shuffledRobots = shuffle(robots);
+			let slicedRobots = shuffledRobots.slice(0,10);
+			let pickedRobots = slicedRobots.concat(slicedRobots);
+
+			return shuffle(pickedRobots);
+		}
+
+		this.setState({robots: createDeck(robots)})
 	}
 
 	onSearchChange = (event) => {
 		this.setState({searchfield: event.target.value })
 	}
 
+	onCardClick = (index, e) => {
+		const { robots, counter, selectedIndex } = this.state;
+		
+		const removeCards = () => {
+			const filteredRobots = robots.filter(robot => robot.name !== robots[selectedIndex].name); 
+
+			this.setState({robots: filteredRobots})
+		}
+
+		if (counter === 0) {
+			e.currentTarget.classList.add('bg-light-blue');
+			this.setState({counter: counter + 1});
+			this.setState({selectedIndex: index})
+		} else {
+			if (index !== selectedIndex && robots[index].name === robots[selectedIndex].name) {
+				removeCards();
+			} 
+
+			let array = document.getElementsByClassName('bg-light-blue');
+			array[0].classList.remove('bg-light-blue');
+
+			this.setState({counter: 0});
+			this.setState({selectedIndex: ''});	
+		}
+	}
+
 	render() {
-		const {robots, searchfield } = this.state;
+		const { robots, searchfield } = this.state;
 
-		const filteredRobots = robots.filter(robot => {
-			return robot.name.toLowerCase().includes(searchfield.toLowerCase());
-		})
-
-		return (!robots.length) ?
-		<h1 className='tc'>Loading...</h1> :
-		(
+		return (
 			<div className='tc'>
 				<h1 className='f1'>RoboFriends</h1>
 				<SearchBox searchChange={this.onSearchChange}/>
 			 	<Scroll>
 			 		<ErrorBoundary>
-			 			<CardList robots={filteredRobots} />
+			 			<CardList handleClick={this.onCardClick} robots={robots} />
 			 		</ErrorBoundary>
 			 	</Scroll>	
 			</div>

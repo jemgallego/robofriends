@@ -1,62 +1,82 @@
 export const robots = [
   {
     id: 1,
-    name: 'Leanne Graham',
-    username: 'Bret',
-    email: 'Sincere@april.biz'
+    name: 'Gigabit'
   },
   {
     id: 2,
-    name: 'Ervin Howell',
-    username: 'Antonette',
-    email: 'Shanna@melissa.tv'
+    name: 'Wire'
   },
   {
     id: 3,
-    name: 'Clementine Bauch',
-    username: 'Samantha',
-    email: 'Nathan@yesenia.net'
+    name: 'Rusty'
   },
   {
     id: 4,
-    name: 'Patricia Lebsack',
-    username: 'Karianne',
-    email: 'Julianne.OConner@kory.org'
+    name: 'Mach'
   },
   {
     id: 5,
-    name: 'Chelsey Dietrich',
-    username: 'Kamren',
-    email: 'Lucio_Hettinger@annie.ca'
+    name: 'Tracker'
   },
   {
     id: 6,
-    name: 'Mrs. Dennis Schulist',
-    username: 'Leopoldo_Corkery',
-    email: 'Karley_Dach@jasper.info'
+    name: 'Tinker'
   },
   {
     id: 7,
-    name: 'Kurtis Weissnat',
-    username: 'Elwyn.Skiles',
-    email: 'Telly.Hoeger@billy.biz'
+    name: 'Beta'
   },
   {
     id: 8,
-    name: 'Nicholas Runolfsdottir V',
-    username: 'Maxime_Nienow',
-    email: 'Sherwood@rosamond.me'
+    name: 'Socket'
   },
   {
     id: 9,
-    name: 'Glenna Reichert',
-    username: 'Delphine',
-    email: 'Chaim_McDermott@dana.io'
+    name: 'Gage'
   },
   {
     id: 10,
-    name: 'Clementina DuBuque',
-    username: 'Moriah.Stanton',
-    email: 'Rey.Padberg@karina.biz'
+    name: 'Scrap'
+  },
+  {
+    id: 11,
+    name: 'Sparky'
+  },
+  {
+    id: 12,
+    name: 'Ratchet'
+  },
+  {
+    id: 13,
+    name: 'Gearz'
+  },
+  {
+    id: 14,
+    name: 'Alpha'
+  },
+  {
+    id: 15,
+    name: 'Micro'
+  },
+  {
+    id: 16,
+    name: 'Uni'
+  },
+  {
+    id: 17,
+    name: 'Fiber'
+  },
+  {
+    id: 18,
+    name: 'Bolt'
+  },
+  {
+    id: 19,
+    name: 'Nuts'
+  },
+  {
+    id: 10,
+    name: 'Wrench'
   }
 ];

@@ -1,20 +1,17 @@
 import React, { Fragment } from 'react';
 import Card from './Card';
 
-const CardList = ({ robots }) => {
-	if (true) {
-		throw new Error('NOOOOOOO!!!!');
-	}
+const CardList = ({ handleClick, robots }) => {
 	return (
 		<Fragment> 
 	    	{
 	    		robots.map( (user,i) => {
 					return (
-						<Card 
+						<Card handleClick = {handleClick}
 							key={i} 
+							pos = {i}
 							id={robots[i].id} 
 							name={robots[i].name} 
-							email={robots[i].email}
 						/>
 					);
 				})
