@@ -31,8 +31,8 @@ class App extends Component {
 
 		const createDeck = (robots) => {
 			let shuffledRobots = shuffle(robots);
-			let slicedRobots = shuffledRobots.slice(0,10);
-			let pickedRobots = slicedRobots.concat(slicedRobots);
+			// let slicedRobots = shuffledRobots.slice(0,10);
+			let pickedRobots = shuffledRobots.concat(shuffledRobots);
 
 			return shuffle(pickedRobots);
 		}
@@ -54,20 +54,20 @@ class App extends Component {
 		}
 
 		if (counter === 0) {
-			e.currentTarget.classList.add('bg-light-blue');
 			this.setState({counter: counter + 1});
 			this.setState({selectedIndex: index})
 		} else {
 			if (index !== selectedIndex && robots[index].name === robots[selectedIndex].name) {
 				removeCards();
-			} 
-
-			let array = document.getElementsByClassName('bg-light-blue');
-			array[0].classList.remove('bg-light-blue');
+			} else {
+				console.log('Flip cards back');
+			}
 
 			this.setState({counter: 0});
 			this.setState({selectedIndex: ''});	
 		}
+
+		console.log('Hello');
 	}
 
 	render() {
@@ -79,7 +79,7 @@ class App extends Component {
 				<SearchBox searchChange={this.onSearchChange}/>
 			 	<Scroll>
 			 		<ErrorBoundary>
-			 			<CardList handleClick={this.onCardClick} robots={robots} />
+			 			<CardList onCardClick={this.onCardClick} robots={robots} />
 			 		</ErrorBoundary>
 			 	</Scroll>	
 			</div>

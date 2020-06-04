@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import Card from './Card';
 
-const CardList = ({ handleClick, robots }) => {
+const CardList = ({ onCardClick, robots }) => {
 	return (
 		<Fragment> 
 	    	{
 	    		robots.map( (user,i) => {
 					return (
-						<Card handleClick = {handleClick}
+						<Card onCardClick = {onCardClick}
 							key={i} 
 							pos = {i}
 							id={robots[i].id} 
