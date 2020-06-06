@@ -1,3 +1,12 @@
+TODO:
+
+1. Clean up code
+2. Add Timer
+3. Add number of turns
+4. React Hook missing dependencies
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -11,12 +11,13 @@ class App extends Component {
 		super()
 		this.state = {
 			robots: robots,
-			searchfield: '',
-			counter: 0,
-			selectedIndex: ''
+			matchFound: false
 		}
 
+		this.cardListElement = React.createRef();
+
 		this.onCardClick = this.onCardClick.bind(this);
+		this.resetMatch = this.resetMatch.bind(this);
 	}
 
 	componentDidMount() {
@@ -44,34 +45,26 @@ class App extends Component {
 		this.setState({searchfield: event.target.value })
 	}
 
-	onCardClick = (index, e) => {
-		const { robots, counter, selectedIndex } = this.state;
+	resetMatch() {
+		this.setState({matchFound: false});
+	}
+
+	onCardClick = (previousIndex, currentIndex) => {
+		const { robots} = this.state;
 		
-		const removeCards = () => {
-			const filteredRobots = robots.filter(robot => robot.name !== robots[selectedIndex].name); 
+		if(previousIndex !== '' && currentIndex !== '') {
+			console.log(robots[previousIndex].name);
+			console.log(robots[currentIndex].name);
 
-			this.setState({robots: filteredRobots})
-		}
-
-		if (counter === 0) {
-			this.setState({counter: counter + 1});
-			this.setState({selectedIndex: index})
-		} else {
-			if (index !== selectedIndex && robots[index].name === robots[selectedIndex].name) {
-				removeCards();
-			} else {
-				console.log('Flip cards back');
+			if (robots[previousIndex].name === robots[currentIndex].name) {
+				this.setState({ matchFound: true});
+				console.log('Match!');
 			}
-
-			this.setState({counter: 0});
-			this.setState({selectedIndex: ''});	
 		}
-
-		console.log('Hello');
 	}
 
 	render() {
-		const { robots, searchfield } = this.state;
+		const { robots } = this.state;
 
 		return (
 			<div className='tc'>
@@ -79,7 +72,12 @@ class App extends Component {
 				<SearchBox searchChange={this.onSearchChange}/>
 			 	<Scroll>
 			 		<ErrorBoundary>
-			 			<CardList onCardClick={this.onCardClick} robots={robots} />
+			 			<CardList 
+			 				onCardClick={this.onCardClick} 
+			 				robots={robots} 
+			 				matchFound={this.state.matchFound} 
+			 				resetMatch={this.resetMatch}
+			 			/>
 			 		</ErrorBoundary>
 			 	</Scroll>	
 			</div>

@@ -1,64 +1,68 @@
-// import React from 'react';
-
-// const Card = ({handleClick, pos, name, id}) => {
-// 	return (
-// 		<div onClick={(e) => handleClick(pos, e)} className="tc bg-light-green dib br3 pa3 ma2 grow bw shadow-5">
-// 			<img alt="robots" src={`https://robohash.org/${id}?size=200x200`} />
-// 			<div>
-// 				<h3>{name}</h3>
-// 			</div>
-// 		</div>
-// 	);
-// }
-
-// export default Card;
-
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactCardFlip from 'react-card-flip';
 
-class Card extends Component {
-	constructor(props) {
-		super(props);
+const Card = (props) => {
+	const [isFlipped, setIsFlipped] = useState(true);
+	const [disableCounter, setDisableCounter] = useState(0);
+	const {index, id, name, count, previousIndex, currentIndex} = props;
 
-		this.state = {
-			isFlipped: true
-		};
+	const [display, setDisplay] = useState('');
 
-		this.handleClick = this.handleClick.bind(this);
-	}
+	useEffect( () => {
 
-	handleClick(event) {
-		event.preventDefault();
-		if (this.state.isFlipped) {
-			this.setState(prevState => ({isFlipped: !prevState.isFlipped}));
-		} else {
-			console.log('Do Nothing');
+		if (count === 2 && (index === previousIndex || index === currentIndex)) {
+			const timeout = setTimeout( () => {
+				if (props.matchFound()) {
+					setDisplay('o-0');
+				} else {
+					setIsFlipped(true);	
+				}
+
+				props.setPreviousIndex(-1);
+				props.setCurrentIndex(-1);
+			}, 1000);
+
+			props.setCount(0);
+
+			return () => clearTimeout(timeout);
 		}
+	}, [currentIndex]);
 
-		this.props.onCardClick(this.props.pos,event);
+	useEffect( () => {
+		console.log(display);
+	}, [display]);
+
+	const handleClick = () => {
+		// event.preventDefault();
+
+		if (isFlipped && previousIndex === -1) {
+			setIsFlipped(false);
+			props.setPreviousIndex(currentIndex);
+			props.setCurrentIndex(index);
+			setDisableCounter(disableCounter + 1);
+			props.setCount(count + 1);
+		}
 	}
-
-	render() {
-		return (
-			<div className="fl w-10 pa2">
-			<ReactCardFlip isFlipped={this.state.isFlipped}>
-				<div onClick={this.handleClick} className="tc bg-light-green dib br3 pa3 ma2 grow bw shadow-5">
-					<img alt="robots" src={`https://robohash.org/${this.props.id}?size=200x200`} />
+	
+	return (
+		<div className="fl w-10 pa2">
+			<ReactCardFlip isFlipped={isFlipped}>
+				<div onClick={handleClick} className={`${display} tc bg-light-green dib br3 pa3 ma2 grow bw shadow-5`}>
+					<img alt="robots" src={`https://robohash.org/${id}?size=200x200`} />
 					<div>
-						<h3>{this.props.name}</h3>
+						<h3>{name}</h3>
 					</div>
 				</div>
 
-				<div onClick={this.handleClick} className="tc bg-light-green dib br3 pa3 ma2 grow bw shadow-5">
+				<div onClick={handleClick} className={`${display} tc bg-near-black light-green dib br3 pa3 ma2 grow bw shadow-5`}>
 					<img alt="robots" src={`https://robohash.org/${100}?size=200x200`} />
 					<div>
-						<h3>CardBack</h3>
+						<h3>Match</h3>
 					</div>
 				</div>
 			</ReactCardFlip>
-			</div>
-		);
-	}
+		</div>
+	);
 }
 
 export default Card;

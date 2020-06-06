@@ -1,17 +1,39 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Card from './Card';
 
-const CardList = ({ onCardClick, robots }) => {
+const CardList = (props) => {
+	const { robots } = props;
+
+	const [currentIndex, setCurrentIndex] = useState(-1);
+	const [previousIndex, setPreviousIndex] = useState(-1);
+	const [count, setCount] = useState(0);
+
+	const matchFound = () => {
+		if (robots[previousIndex].name === robots[currentIndex].name) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+	
 	return (
 		<Fragment> 
 	    	{
-	    		robots.map( (user,i) => {
+	    		robots.map( (robot,i) => {
 					return (
-						<Card onCardClick = {onCardClick}
+						<Card
 							key={i} 
-							pos = {i}
-							id={robots[i].id} 
-							name={robots[i].name} 
+							index = {i}
+							id={robot.id} 
+							name={robot.name} 
+							currentIndex = {currentIndex}
+							setCurrentIndex = {setCurrentIndex}
+							previousIndex = {previousIndex}
+							setPreviousIndex = {setPreviousIndex}
+							count = {count}
+							setCount = {setCount}
+							matchFound = {matchFound}
 						/>
 					);
 				})
@@ -20,5 +42,6 @@ const CardList = ({ onCardClick, robots }) => {
 	);
 }
 
+export default CardList;
 
-export default CardList
+
