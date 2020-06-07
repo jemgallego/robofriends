@@ -1,9 +1,13 @@
 TODO:
 
-1. Clean up code
-2. Add Timer
-3. Add number of turns
-4. React Hook missing dependencies
+- Add Timer
+- Add number of turns
+- React Hook missing dependencies
+- Add Difficulty Level
+
+BUGS:
+
+- If you click superfast, sometimes a card gets stuck. Possible cause - click in between useEffect call
 
 
 

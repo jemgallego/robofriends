@@ -14,7 +14,6 @@ const CardList = (props) => {
 		} else {
 			return false;
 		}
-
 	}
 	
 	return (
