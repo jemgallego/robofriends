@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
+const Timer = ({ gameActive }) => {
 	const [seconds, setSeconds] = useState(0);
-	const [isActive, setIsActive] = useState(true);
-	const [displayTime, setDisplayTime] = useState('');
-
-	function reset() {
-		setSeconds(0);
-		setIsActive(false);
-	}
+	const [isActive, setIsActive] = useState(gameActive);
+	const [displayTime, setDisplayTime] = useState('00:00');
 
 	useEffect(() => {
 		let interval = null;
 
+		setIsActive(gameActive);
+
 		if (isActive) {
+			const format = (time) => {
+				return time.toString().padStart(2,'0');
+			}
+
 			interval = setInterval(() => {
 				setSeconds(seconds => seconds + 1);
 			}, 1000);
@@ -22,28 +23,33 @@ const Timer = () => {
 			let displaySeconds = '';
 
 			if (seconds < 60) {
-				displaySeconds = seconds.toString().padStart(2,'0');
+				displaySeconds = format(seconds);
 			} else {
-				displayMinutes = Math.floor(seconds / 60);
-				displaySeconds = (seconds % 60).toString().padStart(2,'0');
+				displaySeconds = format(seconds % 60);
 			}
+
+			displayMinutes = format(Math.floor(seconds / 60));
 
 			setDisplayTime(`${displayMinutes}:${displaySeconds}`); 
 		
 		} else if (!isActive && seconds !== 0) {
+			setSeconds(0);
+			setIsActive(false);
 			clearInterval(interval);
 		}
 
 		return () => clearInterval(interval);
-	}, [isActive, seconds]);
+	}, [isActive, seconds, gameActive]);
 
 	return (
-		<div className="fl w-10">
-		<div className ='f2 b washed-green'>
-			{displayTime}
-		</div>
-		</div>
+		<span className ='f3 b washed-green'>
+			Time: {displayTime}
+		</span>
 	);
 }
 
 export default Timer;
+
+
+
+

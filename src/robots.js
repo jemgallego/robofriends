@@ -76,7 +76,7 @@ export const robots = [
     name: 'Nuts'
   },
   {
-    id: 10,
+    id: 20,
     name: 'Wrench'
   }
 ];

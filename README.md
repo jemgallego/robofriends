@@ -1,9 +1,11 @@
 TODO:
+- Add start screen
+- Add Game Finished
+- clean up button / gameActive state after Game Finished
+- React Hook missing dependencies (Card)
 
-- Add Timer
-- Add number of turns
-- React Hook missing dependencies
-- Add Difficulty Level
+
+- Difficulty Level: 8x3 = 24, 6x3 = 18, 6x2 = 12
 
 BUGS:
 
