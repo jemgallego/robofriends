@@ -23,12 +23,12 @@ const Menu = ({ gameActive, toggleGameActive, setRobotCount, moves }) => {
 	}
 
 	return (
-		<div className='flex justify-between'>
-			<div className='fl w-third pa3'>
+		<div className='flex justify-center'>
+			<div className='w-third pa3 helvetica'>
 				<Timer gameActive={gameActive} />
 				<span className='f3 b washed-green ph4'>Moves: {moves}</span>
 			</div>
-			<div className ='fl w-third pa3'>
+			<div className ='w-third pa3'>
 				<Button
 					onClick={() => {
 						toggleGameActive();
@@ -41,7 +41,7 @@ const Menu = ({ gameActive, toggleGameActive, setRobotCount, moves }) => {
 					{ !gameActive ? 'Start Game' : 'End Game' } 
 				</Button>
 			</div>
-			<div className ='fl w-third pa3'>
+			<div className ='w-third pa3'>
 				<span className='f4 b washed-green pa2'>Difficulty: </span>
 				<Button
 					onClick={() => changeDifficulty(EASY, 0)}

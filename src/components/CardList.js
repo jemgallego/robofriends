@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import Card from './Card';
 
 const CardList = ({robots, incrementMoves, incrementMatchFound}) => {
-
 	const [currentIndex, setCurrentIndex] = useState(-1);
 	const [previousIndex, setPreviousIndex] = useState(-1);
 	const [count, setCount] = useState(0);
@@ -15,6 +14,13 @@ const CardList = ({robots, incrementMoves, incrementMatchFound}) => {
 		}
 	},[robots, currentIndex, previousIndex]);
 
+	const updateIndices = (index) => {
+		const i = index !== -1 ? currentIndex : -1; 
+
+		setPreviousIndex(i);
+		setCurrentIndex(index);
+	}
+
 	useEffect(() => {
 		if (count === 2) {
 			incrementMoves();
@@ -26,7 +32,7 @@ const CardList = ({robots, incrementMoves, incrementMatchFound}) => {
 	}, [count, incrementMoves, match, incrementMatchFound]);
 	
 	return (
-		<div className='pa4'> 
+		<div className='flex flex-wrap justify-center pv4 w-90 center'> 
 		<Fragment> 
 	    	{
 	    		robots.map( (robot,i) => {
@@ -36,11 +42,9 @@ const CardList = ({robots, incrementMoves, incrementMatchFound}) => {
 							index = {i}
 							id={robot.id} 
 							name={robot.name} 
-							robotCount={robots.length}
 							currentIndex = {currentIndex}
-							setCurrentIndex = {setCurrentIndex}
 							previousIndex = {previousIndex}
-							setPreviousIndex = {setPreviousIndex}
+							updateIndices = {updateIndices}
 							count = {count}
 							setCount = {setCount}
 							match = {match}

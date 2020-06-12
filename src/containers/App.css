@@ -5,9 +5,6 @@ font-weight: normal;
 src: local('SEGA LOGO FONT'), url('SEGA.woff') format('woff');
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-
 h1 {
 	font-family: 'SEGA LOGO FONT';
 	font-weight: 200;

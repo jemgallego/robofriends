@@ -1,10 +1,25 @@
 TODO:
-- Add start screen
+
+# Add height to cards
+# Remmove image and restyle back of cards
+# Customize Font
+# Set width for timer 
+
 - Add Game Finished
+- Remove Press Start and put end game 
+- Play Again Button when Game Finished
+- Change color of Time and Moves?
 - clean up button / gameActive state after Game Finished
+
+- Add start screen
+
+STYLING: 
+- Add Footer
+- Robots supplies by Robohash
+- Add animation on match 
+
+
 - React Hook missing dependencies (Card)
-
-
 - Difficulty Level: 8x3 = 24, 6x3 = 18, 6x2 = 12
 
 BUGS:

@@ -16,7 +16,7 @@ const Timer = ({ gameActive }) => {
 			}
 
 			interval = setInterval(() => {
-				setSeconds(seconds => seconds + 1);
+				setSeconds(sec => sec + 1);
 			}, 1000);
 
 			let displayMinutes = '';
@@ -42,7 +42,7 @@ const Timer = ({ gameActive }) => {
 	}, [isActive, seconds, gameActive]);
 
 	return (
-		<span className ='f3 b washed-green'>
+		<span className ='f3 b washed-green pa2'>
 			Time: {displayTime}
 		</span>
 	);

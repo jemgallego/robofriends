@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import CardList from '../components/CardList';
-import SearchBox from '../components/SearchBox';
 import Menu from '../components/Menu';
-import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { robots } from '../robots';
 import './App.css';
@@ -77,7 +75,7 @@ class App extends Component {
 
 		return (
 			<div className='tc'>
-				<h1 className='f1'>RoboFriends</h1>
+				<h1 className='f1'>RoboMatch</h1>
 				<Menu 
 					gameActive={gameActive} 
 					toggleGameActive={this.toggleGameActive} 

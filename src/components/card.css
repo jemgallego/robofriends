@@ -1,7 +1,16 @@
-.w-12 {
-	width: 12.5%;
+@font-face {
+font-family: 'SEGA LOGO FONT';
+font-style: normal;
+font-weight: normal;
+src: local('SEGA LOGO FONT'), url('../containers/SEGA.woff') format('woff');
 }
 
-.w-16 {
-	width: 16.66%;
+.card-size {
+	width: 160px;
+	height: 220px;
+}
+
+.card-back {
+	font-family: 'SEGA LOGO FONT';
+	height: 180px;
 }
