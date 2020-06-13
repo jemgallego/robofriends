@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CardList from '../components/CardList';
 import Menu from '../components/Menu';
+import StartScreen from '../components/StartScreen';
+import GameFinished from '../components/GameFinished';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { robots } from '../robots';
 import './App.css';
@@ -19,7 +21,7 @@ class App extends Component {
 		}
 	}
 
-	toggleGameActive = () => {
+	toggleGameStatus = () => {
 		this.setState({gameActive: !this.state.gameActive}, this.restartGame);
 	}
 
@@ -45,6 +47,7 @@ class App extends Component {
 		this.setState({ matchFound: this.state.matchFound + 1}, () => {
 			if (this.state.matchFound === this.state.robotCount) {
 				this.setState({gameFinished: true});
+				this.setState({gameActive: false});
 			}
 		});
 	} 
@@ -73,23 +76,24 @@ class App extends Component {
 	render() {
 		const { robots, gameActive, moves, gameFinished } = this.state;
 
+		const component = gameFinished ? <GameFinished /> : <StartScreen />
+
 		return (
-			<div className='tc'>
-				<h1 className='f1'>RoboMatch</h1>
+			<div className='tc washed-green'>
+				<h1 className='f1'>Robo Match</h1>
 				<Menu 
 					gameActive={gameActive} 
-					toggleGameActive={this.toggleGameActive} 
+					gameFinished={gameFinished}
+					toggleGameStatus={this.toggleGameStatus} 
 					setRobotCount={this.setRobotCount} 
 					moves={moves}
 				/>
-			 		<ErrorBoundary>
-			 			{gameFinished && <h1 className='f1'>Congratulations</h1>}
-			 			{ 
-			 				gameActive && !gameFinished ? 
-			 				<CardList robots={robots} incrementMoves={this.incrementMoves} incrementMatchFound={this.incrementMatchFound} /> 
-			 				: <h1 className='f1'>Press Start</h1>
-			 			}
-			 		</ErrorBoundary>
+
+		 		<ErrorBoundary>
+		 			{!gameActive && component}
+		 			{gameActive && <CardList robots={robots} incrementMoves={this.incrementMoves} incrementMatchFound={this.incrementMatchFound} />}
+		 		</ErrorBoundary>
+		 		<p className='pt4'>Robots lovingly delivered by <a className='light-blue' href='https://robohash.org'>Robohash.org</a></p>
 			</div>
 		);
 	}

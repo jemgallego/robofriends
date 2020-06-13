@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ gameActive }) => {
+const Timer = ({ gameActive, gameFinished }) => {
 	const [seconds, setSeconds] = useState(0);
 	const [isActive, setIsActive] = useState(gameActive);
 	const [displayTime, setDisplayTime] = useState('00:00');
@@ -42,7 +42,7 @@ const Timer = ({ gameActive }) => {
 	}, [isActive, seconds, gameActive]);
 
 	return (
-		<span className ='f3 b washed-green pa2'>
+		<span className ={`f3 b pa2`}>
 			Time: {displayTime}
 		</span>
 	);
