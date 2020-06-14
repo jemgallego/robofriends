@@ -6,7 +6,7 @@ const CardList = ({robots, incrementMoves, incrementMatchFound}) => {
 	const [previousIndex, setPreviousIndex] = useState(-1);
 	const [count, setCount] = useState(0);
 
-	const match = useCallback(() => {
+	const cardsMatch = useCallback(() => {
 		if (robots[previousIndex].name === robots[currentIndex].name) {
 			return true;
 		} else {
@@ -21,15 +21,34 @@ const CardList = ({robots, incrementMoves, incrementMatchFound}) => {
 		setCurrentIndex(index);
 	}
 
+	const shouldTakeAction = (index) => {		
+		if (count === 2 && (index === previousIndex || index === currentIndex)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	const shouldFlip = (index) => {
+		if (previousIndex === -1) {
+			updateIndices(index);
+			setCount(count + 1);
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	useEffect(() => {
 		if (count === 2) {
 			incrementMoves();
 			
-			if (match()) {
+			if (cardsMatch()) {
 				incrementMatchFound();
 			}
 		}
-	}, [count, incrementMoves, match, incrementMatchFound]);
+	}, [count, incrementMoves, cardsMatch, incrementMatchFound]);
 	
 	return (
 		<div className='flex flex-wrap justify-center pv4 w-90 center'> 
@@ -43,11 +62,11 @@ const CardList = ({robots, incrementMoves, incrementMatchFound}) => {
 							id={robot.id} 
 							name={robot.name} 
 							currentIndex = {currentIndex}
-							previousIndex = {previousIndex}
+							cardsMatch = {cardsMatch}
+							shouldFlip = {shouldFlip}
+							shouldTakeAction = {shouldTakeAction}
 							updateIndices = {updateIndices}
-							count = {count}
 							setCount = {setCount}
-							match = {match}
 						/>
 					);
 

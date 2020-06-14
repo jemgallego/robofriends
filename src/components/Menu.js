@@ -30,7 +30,6 @@ const Menu = ({ gameActive, gameFinished, toggleGameStatus, setRobotCount, moves
 
 	useEffect (() => {
 		setIsDisabled(gameActive);
-		console.log('gameActive', gameActive);
 	}, [gameActive]);
 
 	return (
