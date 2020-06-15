@@ -20,7 +20,7 @@ const Button = ({disabled, buttonStyle, buttonSize, onClick, type, children}) =>
 	return (
 		<button 
 			disabled={disabled} 
-			className={`btn ${setButtonStyle} ${setButtonSize} ${disabled ? 'noHover' : ''} mr3`} 
+			className={`btn ${setButtonStyle} ${setButtonSize} ${disabled ? 'noHover' : ''} mr2 mb2 `} 
 			onClick={onClick} 
 			type={type}>
 			{children}

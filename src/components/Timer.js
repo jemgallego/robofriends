@@ -42,7 +42,7 @@ const Timer = ({ gameActive, gameFinished }) => {
 	}, [isActive, seconds, gameActive]);
 
 	return (
-		<span className ={`f3 b pa2`}>
+		<span className ={'pa2'}>
 			Time: {displayTime}
 		</span>
 	);

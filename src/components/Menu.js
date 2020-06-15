@@ -33,12 +33,12 @@ const Menu = ({ gameActive, gameFinished, toggleGameStatus, setRobotCount, moves
 	}, [gameActive]);
 
 	return (
-		<div className='flex justify-center'>
-			<div className={`w-third pa3 helvetica ${gameFinished ? 'yellow' : 'washed-green'}`}>
+		<div className='flex flex-wrap justify-center'>
+			<div className={`w-100 w-third-l f5 f3-l b pa3 helvetica ${gameFinished ? 'yellow' : 'washed-green'}`}>
 				<Timer gameActive={gameActive} gameFinished={gameFinished} />
-				<span className='f3 b ph4'>Moves: {moves}</span>
+				<span className='ph4'>Moves: {moves}</span>
 			</div>
-			<div className ='w-third pa3'>
+			<div className ='w-100 w-third-l pv3'>
 				<Button
 					onClick={() => {
 						toggleGameStatus();
@@ -51,16 +51,15 @@ const Menu = ({ gameActive, gameFinished, toggleGameStatus, setRobotCount, moves
 					{mainButtonText} 
 				</Button>
 			</div>
-			<div className ='w-third pa3'>
-				<span className='f4 b washed-green pa2'>Difficulty: </span>
+			<div className ='w-100 w-third-l pa3'>
+				<span className='f5 f4-l b washed-green'>Difficulty: </span>
 				<Button
 					onClick={() => changeDifficulty(EASY, 0)}
 					type='button' 
 					buttonStyle={setButtonStyle(EASY)}
 					buttonSize='btn--small'
 					disabled={isDisabled}
-				> 
-					Easy 
+				> Easy 
 				</Button>
 				
 				<Button
@@ -69,8 +68,7 @@ const Menu = ({ gameActive, gameFinished, toggleGameStatus, setRobotCount, moves
 					buttonStyle={setButtonStyle(NORMAL)}
 					buttonSize='btn--small'
 					disabled={isDisabled}
-				> 
-					Normal 
+				> Normal 
 				</Button>
 
 				<Button
@@ -79,8 +77,7 @@ const Menu = ({ gameActive, gameFinished, toggleGameStatus, setRobotCount, moves
 					buttonStyle={setButtonStyle(HARD)}
 					buttonSize='btn--small'
 					disabled={isDisabled}
-				> 
-					Hard 
+				> Hard 
 				</Button>
 			</div>
 		</div>
