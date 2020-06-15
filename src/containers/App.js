@@ -80,7 +80,7 @@ class App extends Component {
 
 		return (
 			<div className='tc washed-green'>
-				<h1 className='f1'>Robo Match</h1>
+				<h1 className='f2 f1-l'>Robo Match</h1>
 				<Menu 
 					gameActive={gameActive} 
 					gameFinished={gameFinished}

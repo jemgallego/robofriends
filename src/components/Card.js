@@ -2,23 +2,20 @@ import React, { useState, useEffect } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import './card.css';
 
-const Card = ({ id, name, index, currentIndex, cardsMatch, shouldFlip, shouldTakeAction, updateIndices, setCount}) => {
+const Card = ({ id, name, index, shouldFlip, cardAnimation, animations, setResetCounter}) => {
 	const [isFlipped, setIsFlipped] = useState(true);
 	const [display, setDisplay] = useState('');
-
+	
 	useEffect( () => {
-		if (shouldTakeAction(index)) {
+		if (cardAnimation !== animations[0]) {
 			const timeout = setTimeout( () => {
-				cardsMatch() ? setDisplay('o-0') : setIsFlipped(true);	
-				updateIndices(-1);
+				cardAnimation === animations[1] ? setIsFlipped(true) : setDisplay('o-0');
+				setResetCounter(reset => reset + 1);
 			}, 1000);
-
-			setCount(0);
 
 			return () => clearTimeout(timeout);
 		}
-		// eslint-disable-next-line
-	}, [currentIndex,index,setCount]);
+	}, [cardAnimation, animations, setResetCounter]);
 
 	const handleClick = () => {
 		if (isFlipped && shouldFlip(index)) {
