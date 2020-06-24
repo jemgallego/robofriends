@@ -34,7 +34,7 @@ const Card = ({ id, name, index, shouldFlip, cardAnimation, animations, setReset
 
 			<div onClick={handleClick} className={`${display} tc bg-near-black light-green dib br3 pa3 ma2 grow shadow-5 card-size`}>
 				<div className='flex items-center card-back'>
-					<h2 className=''>Robo Match</h2>
+					<h2>Robo Match</h2>
 				</div>
 			</div>
 		</ReactCardFlip>
